@@ -1,0 +1,22 @@
+﻿<Window x:Class="KsiazkaKucharska.DodajSkladnik"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="{Binding windowTitle}" Height="473" Width="680" WindowStartupLocation="CenterOwner" ResizeMode="NoResize">
+    <Grid Background="#FFE5E5E5">
+        <Label Content="Nazwa:" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="0.229,0.385" Margin="1,8,0,0"/>
+        <TextBox Text="{Binding nazwa}" HorizontalAlignment="Left" Height="23" Margin="69,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="359"/>
+        <Label Content="Kategoria:" HorizontalAlignment="Left" Margin="1,39,0,0" VerticalAlignment="Top"/>
+        <ComboBox ItemsSource="{Binding kategorie}" SelectedItem="{Binding kategorieSelection, Mode=TwoWay}" HorizontalAlignment="Left" Margin="69,41,0,0" VerticalAlignment="Top" Width="206"/>
+        <Label Content="Opis:" HorizontalAlignment="Left" Margin="1,70,0,0" VerticalAlignment="Top"/>
+        <TextBox Text="{Binding opis}" HorizontalAlignment="Left" Height="149" Margin="69,73,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="359"/>
+        <Button Content="Zarządzaj kategoriami" HorizontalAlignment="Left" Margin="280,41,0,0" VerticalAlignment="Top" Width="148" Click="btnZarzadzajKategoriami_Click"/>
+        <TextBox Text="{Binding uwagi}" HorizontalAlignment="Left" Height="149" Margin="69,238,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="359"/>
+        <Label Content="Uwagi:" HorizontalAlignment="Left" Margin="1,238,0,0" VerticalAlignment="Top"/>
+        <GroupBox Header="Zdjęcie" HorizontalAlignment="Left" Margin="440,0,0,0" VerticalAlignment="Top" Height="201" Width="214">
+            <Image Source="{Binding zdjecie}" HorizontalAlignment="Left" Height="180" VerticalAlignment="Top" Width="204" Margin="0,0,-2,-1" Stretch="Fill"/>
+        </GroupBox>
+        <Button Content="Przeglądaj" HorizontalAlignment="Left" Margin="440,206,0,0" VerticalAlignment="Top" Width="214" Click="btnPrzegladajZdjecie_Click"/>
+        <Button Command="{Binding dodajSkladnik}" Content="{Binding btnDodajText}" HorizontalAlignment="Left" Margin="10,404,0,0" VerticalAlignment="Top" Width="644"/>
+
+    </Grid>
+</Window>

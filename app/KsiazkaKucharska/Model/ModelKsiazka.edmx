@@ -1,0 +1,450 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="KsiazkaKucharskaModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="KsiazkaKucharskaModelStoreContainer">
+          <EntitySet Name="Jednostki" EntityType="KsiazkaKucharskaModel.Store.Jednostki" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Kategorie_Przepisy" EntityType="KsiazkaKucharskaModel.Store.Kategorie_Przepisy" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Kategorie_Skladniki" EntityType="KsiazkaKucharskaModel.Store.Kategorie_Skladniki" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Przepisy" EntityType="KsiazkaKucharskaModel.Store.Przepisy" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Przepisy_Skladniki" EntityType="KsiazkaKucharskaModel.Store.Przepisy_Skladniki" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Skladniki" EntityType="KsiazkaKucharskaModel.Store.Skladniki" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="sysdiagrams" EntityType="KsiazkaKucharskaModel.Store.sysdiagrams" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_LINK_Jednostki_Przepisy_Skladniki" Association="KsiazkaKucharskaModel.Store.FK_LINK_Jednostki_Przepisy_Skladniki">
+            <End Role="Jednostki" EntitySet="Jednostki" />
+            <End Role="Przepisy_Skladniki" EntitySet="Przepisy_Skladniki" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LINK_KATEGORIE_PRZEPISY" Association="KsiazkaKucharskaModel.Store.FK_LINK_KATEGORIE_PRZEPISY">
+            <End Role="Kategorie_Przepisy" EntitySet="Kategorie_Przepisy" />
+            <End Role="Przepisy" EntitySet="Przepisy" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LINK_KATEGORIE_SKLADNIKI" Association="KsiazkaKucharskaModel.Store.FK_LINK_KATEGORIE_SKLADNIKI">
+            <End Role="Kategorie_Skladniki" EntitySet="Kategorie_Skladniki" />
+            <End Role="Skladniki" EntitySet="Skladniki" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LINK_PRZEPISY" Association="KsiazkaKucharskaModel.Store.FK_LINK_PRZEPISY">
+            <End Role="Przepisy" EntitySet="Przepisy" />
+            <End Role="Przepisy_Skladniki" EntitySet="Przepisy_Skladniki" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LINK_SKLADNIKI" Association="KsiazkaKucharskaModel.Store.FK_LINK_SKLADNIKI">
+            <End Role="Skladniki" EntitySet="Skladniki" />
+            <End Role="Przepisy_Skladniki" EntitySet="Przepisy_Skladniki" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Jednostki">
+          <Key>
+            <PropertyRef Name="ID_JEDNOSTKI" />
+          </Key>
+          <Property Name="ID_JEDNOSTKI" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="NAZWA" Type="varchar" MaxLength="15" />
+        </EntityType>
+        <EntityType Name="Kategorie_Przepisy">
+          <Key>
+            <PropertyRef Name="P_ID_KATEGORII" />
+          </Key>
+          <Property Name="P_ID_KATEGORII" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="P_NAZWA" Type="varchar" MaxLength="25" />
+        </EntityType>
+        <EntityType Name="Kategorie_Skladniki">
+          <Key>
+            <PropertyRef Name="S_ID_KATEGORII" />
+          </Key>
+          <Property Name="S_ID_KATEGORII" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="S_NAZWA" Type="varchar" MaxLength="25" />
+        </EntityType>
+        <EntityType Name="Przepisy">
+          <Key>
+            <PropertyRef Name="ID_PRZEPISU" />
+          </Key>
+          <Property Name="ID_PRZEPISU" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="NAZWA" Type="varchar" MaxLength="50" />
+          <Property Name="ID_KATEGORII" Type="int" />
+          <Property Name="OPIS" Type="varchar" MaxLength="5000" />
+          <Property Name="NOTATKI" Type="varchar" MaxLength="5000" />
+          <Property Name="ILOSC_PORCJI" Type="float" />
+          <Property Name="CZAS_PRZYRZADZENIA" Type="int" />
+          <Property Name="ZDJECIE" Type="image" />
+        </EntityType>
+        <EntityType Name="Przepisy_Skladniki">
+          <Key>
+            <PropertyRef Name="L_ID_PRZEPISU" />
+            <PropertyRef Name="L_ID_SKLADNIKA" />
+          </Key>
+          <Property Name="L_ID_PRZEPISU" Type="int" Nullable="false" />
+          <Property Name="L_ID_SKLADNIKA" Type="int" Nullable="false" />
+          <Property Name="ILOSC" Type="float" />
+          <Property Name="ID_JEDNOSTKI" Type="int" />
+        </EntityType>
+        <EntityType Name="Skladniki">
+          <Key>
+            <PropertyRef Name="ID_SKLADNIKA" />
+          </Key>
+          <Property Name="ID_SKLADNIKA" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="NAZWA" Type="varchar" MaxLength="50" />
+          <Property Name="ID_KATEGORII" Type="int" />
+          <Property Name="OPIS" Type="varchar" MaxLength="5000" />
+          <Property Name="UWAGI" Type="varchar" MaxLength="5000" />
+          <Property Name="ZDJECIE" Type="image" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" Nullable="false" MaxLength="128" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <Association Name="FK_LINK_Jednostki_Przepisy_Skladniki">
+          <End Role="Jednostki" Type="KsiazkaKucharskaModel.Store.Jednostki" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Przepisy_Skladniki" Type="KsiazkaKucharskaModel.Store.Przepisy_Skladniki" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Jednostki">
+              <PropertyRef Name="ID_JEDNOSTKI" />
+            </Principal>
+            <Dependent Role="Przepisy_Skladniki">
+              <PropertyRef Name="ID_JEDNOSTKI" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LINK_KATEGORIE_PRZEPISY">
+          <End Role="Kategorie_Przepisy" Type="KsiazkaKucharskaModel.Store.Kategorie_Przepisy" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Przepisy" Type="KsiazkaKucharskaModel.Store.Przepisy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kategorie_Przepisy">
+              <PropertyRef Name="P_ID_KATEGORII" />
+            </Principal>
+            <Dependent Role="Przepisy">
+              <PropertyRef Name="ID_KATEGORII" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LINK_KATEGORIE_SKLADNIKI">
+          <End Role="Kategorie_Skladniki" Type="KsiazkaKucharskaModel.Store.Kategorie_Skladniki" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Skladniki" Type="KsiazkaKucharskaModel.Store.Skladniki" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kategorie_Skladniki">
+              <PropertyRef Name="S_ID_KATEGORII" />
+            </Principal>
+            <Dependent Role="Skladniki">
+              <PropertyRef Name="ID_KATEGORII" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LINK_PRZEPISY">
+          <End Role="Przepisy" Type="KsiazkaKucharskaModel.Store.Przepisy" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Przepisy_Skladniki" Type="KsiazkaKucharskaModel.Store.Przepisy_Skladniki" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Przepisy">
+              <PropertyRef Name="ID_PRZEPISU" />
+            </Principal>
+            <Dependent Role="Przepisy_Skladniki">
+              <PropertyRef Name="L_ID_PRZEPISU" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LINK_SKLADNIKI">
+          <End Role="Skladniki" Type="KsiazkaKucharskaModel.Store.Skladniki" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Przepisy_Skladniki" Type="KsiazkaKucharskaModel.Store.Przepisy_Skladniki" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Skladniki">
+              <PropertyRef Name="ID_SKLADNIKA" />
+            </Principal>
+            <Dependent Role="Przepisy_Skladniki">
+              <PropertyRef Name="L_ID_SKLADNIKA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="KsiazkaKucharskaModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="KsiazkaKucharskaConnection" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="Jednostki" EntityType="KsiazkaKucharskaModel.Jednostki" />
+          <EntitySet Name="Kategorie_Przepisy" EntityType="KsiazkaKucharskaModel.Kategorie_Przepisy" />
+          <EntitySet Name="Kategorie_Skladniki" EntityType="KsiazkaKucharskaModel.Kategorie_Skladniki" />
+          <EntitySet Name="Przepisy" EntityType="KsiazkaKucharskaModel.Przepisy" />
+          <EntitySet Name="Przepisy_Skladniki" EntityType="KsiazkaKucharskaModel.Przepisy_Skladniki" />
+          <EntitySet Name="Skladniki" EntityType="KsiazkaKucharskaModel.Skladniki" />
+          <EntitySet Name="sysdiagrams" EntityType="KsiazkaKucharskaModel.sysdiagrams" />
+          <AssociationSet Name="FK_LINK_Jednostki_Przepisy_Skladniki" Association="KsiazkaKucharskaModel.FK_LINK_Jednostki_Przepisy_Skladniki">
+            <End Role="Jednostki" EntitySet="Jednostki" />
+            <End Role="Przepisy_Skladniki" EntitySet="Przepisy_Skladniki" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LINK_KATEGORIE_PRZEPISY" Association="KsiazkaKucharskaModel.FK_LINK_KATEGORIE_PRZEPISY">
+            <End Role="Kategorie_Przepisy" EntitySet="Kategorie_Przepisy" />
+            <End Role="Przepisy" EntitySet="Przepisy" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LINK_KATEGORIE_SKLADNIKI" Association="KsiazkaKucharskaModel.FK_LINK_KATEGORIE_SKLADNIKI">
+            <End Role="Kategorie_Skladniki" EntitySet="Kategorie_Skladniki" />
+            <End Role="Skladniki" EntitySet="Skladniki" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LINK_PRZEPISY" Association="KsiazkaKucharskaModel.FK_LINK_PRZEPISY">
+            <End Role="Przepisy" EntitySet="Przepisy" />
+            <End Role="Przepisy_Skladniki" EntitySet="Przepisy_Skladniki" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LINK_SKLADNIKI" Association="KsiazkaKucharskaModel.FK_LINK_SKLADNIKI">
+            <End Role="Skladniki" EntitySet="Skladniki" />
+            <End Role="Przepisy_Skladniki" EntitySet="Przepisy_Skladniki" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Jednostki">
+          <Key>
+            <PropertyRef Name="ID_JEDNOSTKI" />
+          </Key>
+          <Property Name="ID_JEDNOSTKI" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="NAZWA" Type="String" MaxLength="15" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="Przepisy_Skladniki" Relationship="KsiazkaKucharskaModel.FK_LINK_Jednostki_Przepisy_Skladniki" FromRole="Jednostki" ToRole="Przepisy_Skladniki" />
+        </EntityType>
+        <EntityType Name="Kategorie_Przepisy">
+          <Key>
+            <PropertyRef Name="P_ID_KATEGORII" />
+          </Key>
+          <Property Name="P_ID_KATEGORII" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="P_NAZWA" Type="String" MaxLength="25" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="Przepisy" Relationship="KsiazkaKucharskaModel.FK_LINK_KATEGORIE_PRZEPISY" FromRole="Kategorie_Przepisy" ToRole="Przepisy" />
+        </EntityType>
+        <EntityType Name="Kategorie_Skladniki">
+          <Key>
+            <PropertyRef Name="S_ID_KATEGORII" />
+          </Key>
+          <Property Name="S_ID_KATEGORII" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="S_NAZWA" Type="String" MaxLength="25" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="Skladniki" Relationship="KsiazkaKucharskaModel.FK_LINK_KATEGORIE_SKLADNIKI" FromRole="Kategorie_Skladniki" ToRole="Skladniki" />
+        </EntityType>
+        <EntityType Name="Przepisy">
+          <Key>
+            <PropertyRef Name="ID_PRZEPISU" />
+          </Key>
+          <Property Name="ID_PRZEPISU" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="NAZWA" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="ID_KATEGORII" Type="Int32" />
+          <Property Name="OPIS" Type="String" MaxLength="5000" Unicode="false" FixedLength="false" />
+          <Property Name="NOTATKI" Type="String" MaxLength="5000" Unicode="false" FixedLength="false" />
+          <Property Name="ILOSC_PORCJI" Type="Double" />
+          <Property Name="CZAS_PRZYRZADZENIA" Type="Int32" />
+          <Property Name="ZDJECIE" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="Kategorie_Przepisy" Relationship="KsiazkaKucharskaModel.FK_LINK_KATEGORIE_PRZEPISY" FromRole="Przepisy" ToRole="Kategorie_Przepisy" />
+          <NavigationProperty Name="Przepisy_Skladniki" Relationship="KsiazkaKucharskaModel.FK_LINK_PRZEPISY" FromRole="Przepisy" ToRole="Przepisy_Skladniki" />
+        </EntityType>
+        <EntityType Name="Przepisy_Skladniki">
+          <Key>
+            <PropertyRef Name="L_ID_PRZEPISU" />
+            <PropertyRef Name="L_ID_SKLADNIKA" />
+          </Key>
+          <Property Name="L_ID_PRZEPISU" Type="Int32" Nullable="false" />
+          <Property Name="L_ID_SKLADNIKA" Type="Int32" Nullable="false" />
+          <Property Name="ILOSC" Type="Double" />
+          <Property Name="ID_JEDNOSTKI" Type="Int32" />
+          <NavigationProperty Name="Jednostki" Relationship="KsiazkaKucharskaModel.FK_LINK_Jednostki_Przepisy_Skladniki" FromRole="Przepisy_Skladniki" ToRole="Jednostki" />
+          <NavigationProperty Name="Przepisy" Relationship="KsiazkaKucharskaModel.FK_LINK_PRZEPISY" FromRole="Przepisy_Skladniki" ToRole="Przepisy" />
+          <NavigationProperty Name="Skladniki" Relationship="KsiazkaKucharskaModel.FK_LINK_SKLADNIKI" FromRole="Przepisy_Skladniki" ToRole="Skladniki" />
+        </EntityType>
+        <EntityType Name="Skladniki">
+          <Key>
+            <PropertyRef Name="ID_SKLADNIKA" />
+          </Key>
+          <Property Name="ID_SKLADNIKA" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="NAZWA" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="ID_KATEGORII" Type="Int32" />
+          <Property Name="OPIS" Type="String" MaxLength="5000" Unicode="false" FixedLength="false" />
+          <Property Name="UWAGI" Type="String" MaxLength="5000" Unicode="false" FixedLength="false" />
+          <Property Name="ZDJECIE" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="Kategorie_Skladniki" Relationship="KsiazkaKucharskaModel.FK_LINK_KATEGORIE_SKLADNIKI" FromRole="Skladniki" ToRole="Kategorie_Skladniki" />
+          <NavigationProperty Name="Przepisy_Skladniki" Relationship="KsiazkaKucharskaModel.FK_LINK_SKLADNIKI" FromRole="Skladniki" ToRole="Przepisy_Skladniki" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" Unicode="true" FixedLength="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <Association Name="FK_LINK_Jednostki_Przepisy_Skladniki">
+          <End Role="Jednostki" Type="KsiazkaKucharskaModel.Jednostki" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Przepisy_Skladniki" Type="KsiazkaKucharskaModel.Przepisy_Skladniki" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Jednostki">
+              <PropertyRef Name="ID_JEDNOSTKI" />
+            </Principal>
+            <Dependent Role="Przepisy_Skladniki">
+              <PropertyRef Name="ID_JEDNOSTKI" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LINK_KATEGORIE_PRZEPISY">
+          <End Role="Kategorie_Przepisy" Type="KsiazkaKucharskaModel.Kategorie_Przepisy" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Przepisy" Type="KsiazkaKucharskaModel.Przepisy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kategorie_Przepisy">
+              <PropertyRef Name="P_ID_KATEGORII" />
+            </Principal>
+            <Dependent Role="Przepisy">
+              <PropertyRef Name="ID_KATEGORII" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LINK_KATEGORIE_SKLADNIKI">
+          <End Role="Kategorie_Skladniki" Type="KsiazkaKucharskaModel.Kategorie_Skladniki" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Skladniki" Type="KsiazkaKucharskaModel.Skladniki" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kategorie_Skladniki">
+              <PropertyRef Name="S_ID_KATEGORII" />
+            </Principal>
+            <Dependent Role="Skladniki">
+              <PropertyRef Name="ID_KATEGORII" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LINK_PRZEPISY">
+          <End Role="Przepisy" Type="KsiazkaKucharskaModel.Przepisy" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Przepisy_Skladniki" Type="KsiazkaKucharskaModel.Przepisy_Skladniki" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Przepisy">
+              <PropertyRef Name="ID_PRZEPISU" />
+            </Principal>
+            <Dependent Role="Przepisy_Skladniki">
+              <PropertyRef Name="L_ID_PRZEPISU" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LINK_SKLADNIKI">
+          <End Role="Skladniki" Type="KsiazkaKucharskaModel.Skladniki" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Przepisy_Skladniki" Type="KsiazkaKucharskaModel.Przepisy_Skladniki" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Skladniki">
+              <PropertyRef Name="ID_SKLADNIKA" />
+            </Principal>
+            <Dependent Role="Przepisy_Skladniki">
+              <PropertyRef Name="L_ID_SKLADNIKA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="KsiazkaKucharskaModelStoreContainer" CdmEntityContainer="KsiazkaKucharskaConnection">
+          <EntitySetMapping Name="Jednostki">
+            <EntityTypeMapping TypeName="KsiazkaKucharskaModel.Jednostki">
+              <MappingFragment StoreEntitySet="Jednostki">
+                <ScalarProperty Name="ID_JEDNOSTKI" ColumnName="ID_JEDNOSTKI" />
+                <ScalarProperty Name="NAZWA" ColumnName="NAZWA" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Kategorie_Przepisy">
+            <EntityTypeMapping TypeName="KsiazkaKucharskaModel.Kategorie_Przepisy">
+              <MappingFragment StoreEntitySet="Kategorie_Przepisy">
+                <ScalarProperty Name="P_ID_KATEGORII" ColumnName="P_ID_KATEGORII" />
+                <ScalarProperty Name="P_NAZWA" ColumnName="P_NAZWA" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Kategorie_Skladniki">
+            <EntityTypeMapping TypeName="KsiazkaKucharskaModel.Kategorie_Skladniki">
+              <MappingFragment StoreEntitySet="Kategorie_Skladniki">
+                <ScalarProperty Name="S_ID_KATEGORII" ColumnName="S_ID_KATEGORII" />
+                <ScalarProperty Name="S_NAZWA" ColumnName="S_NAZWA" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Przepisy">
+            <EntityTypeMapping TypeName="KsiazkaKucharskaModel.Przepisy">
+              <MappingFragment StoreEntitySet="Przepisy">
+                <ScalarProperty Name="ID_PRZEPISU" ColumnName="ID_PRZEPISU" />
+                <ScalarProperty Name="NAZWA" ColumnName="NAZWA" />
+                <ScalarProperty Name="ID_KATEGORII" ColumnName="ID_KATEGORII" />
+                <ScalarProperty Name="OPIS" ColumnName="OPIS" />
+                <ScalarProperty Name="NOTATKI" ColumnName="NOTATKI" />
+                <ScalarProperty Name="ILOSC_PORCJI" ColumnName="ILOSC_PORCJI" />
+                <ScalarProperty Name="CZAS_PRZYRZADZENIA" ColumnName="CZAS_PRZYRZADZENIA" />
+                <ScalarProperty Name="ZDJECIE" ColumnName="ZDJECIE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Przepisy_Skladniki">
+            <EntityTypeMapping TypeName="KsiazkaKucharskaModel.Przepisy_Skladniki">
+              <MappingFragment StoreEntitySet="Przepisy_Skladniki">
+                <ScalarProperty Name="L_ID_PRZEPISU" ColumnName="L_ID_PRZEPISU" />
+                <ScalarProperty Name="L_ID_SKLADNIKA" ColumnName="L_ID_SKLADNIKA" />
+                <ScalarProperty Name="ILOSC" ColumnName="ILOSC" />
+                <ScalarProperty Name="ID_JEDNOSTKI" ColumnName="ID_JEDNOSTKI" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Skladniki">
+            <EntityTypeMapping TypeName="KsiazkaKucharskaModel.Skladniki">
+              <MappingFragment StoreEntitySet="Skladniki">
+                <ScalarProperty Name="ID_SKLADNIKA" ColumnName="ID_SKLADNIKA" />
+                <ScalarProperty Name="NAZWA" ColumnName="NAZWA" />
+                <ScalarProperty Name="ID_KATEGORII" ColumnName="ID_KATEGORII" />
+                <ScalarProperty Name="OPIS" ColumnName="OPIS" />
+                <ScalarProperty Name="UWAGI" ColumnName="UWAGI" />
+                <ScalarProperty Name="ZDJECIE" ColumnName="ZDJECIE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="KsiazkaKucharskaModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

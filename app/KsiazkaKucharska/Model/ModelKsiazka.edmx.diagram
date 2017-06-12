@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="bef46b7670dc4f789f66328524f6d082" Name="Diagram1">
+        <EntityTypeShape EntityType="KsiazkaKucharskaModel.Jednostki" Width="1.5" PointX="3" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="KsiazkaKucharskaModel.Kategorie_Przepisy" Width="1.5" PointX="0.75" PointY="1.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="KsiazkaKucharskaModel.Kategorie_Skladniki" Width="1.5" PointX="0.75" PointY="7.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="KsiazkaKucharskaModel.Przepisy" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="KsiazkaKucharskaModel.Przepisy_Skladniki" Width="1.5" PointX="5.25" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="KsiazkaKucharskaModel.Skladniki" Width="1.5" PointX="3" PointY="7.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="KsiazkaKucharskaModel.sysdiagrams" Width="1.5" PointX="5.75" PointY="4.75" IsExpanded="true" />
+        <AssociationConnector Association="KsiazkaKucharskaModel.FK_LINK_Jednostki_Przepisy_Skladniki" ManuallyRouted="false" />
+        <AssociationConnector Association="KsiazkaKucharskaModel.FK_LINK_KATEGORIE_PRZEPISY" ManuallyRouted="false" />
+        <AssociationConnector Association="KsiazkaKucharskaModel.FK_LINK_KATEGORIE_SKLADNIKI" ManuallyRouted="false" />
+        <AssociationConnector Association="KsiazkaKucharskaModel.FK_LINK_PRZEPISY" ManuallyRouted="false" />
+        <AssociationConnector Association="KsiazkaKucharskaModel.FK_LINK_SKLADNIKI" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

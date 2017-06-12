@@ -1,0 +1,247 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{F299348E-9213-416E-8F4B-4A81A0CF434F}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>KsiazkaKucharska</RootNamespace>
+    <AssemblyName>KsiazkaKucharska</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Activities" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Messaging" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.ServiceModel.Activities" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="View\DodajKategorie.xaml.cs">
+      <DependentUpon>DodajKategorie.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModel\DodajJednostkeViewModel.cs" />
+    <Compile Include="ViewModel\DodajKategorieViewModel.cs" />
+    <Compile Include="ViewModel\ZarzadzanieJednostkamiViewModel.cs" />
+    <Compile Include="ViewModel\ZarzadzanieKategoriamiViewModel.cs" />
+    <Compile Include="View\EdytujSkladnikPrzepisu.xaml.cs">
+      <DependentUpon>EdytujSkladnikPrzepisu.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModel\EdytujSkladnikPrzepisuViewModel.cs" />
+    <Compile Include="View\DodajPrzepis.xaml.cs">
+      <DependentUpon>DodajPrzepis.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModel\DodajPrzepisViewModel.cs" />
+    <Compile Include="View\DodajSkladnik.xaml.cs">
+      <DependentUpon>DodajSkladnik.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MessageBoxShow.cs" />
+    <Compile Include="ViewModel\DodajSkladnikViewModel.cs" />
+    <Compile Include="View\DodajJednostke.xaml.cs">
+      <DependentUpon>DodajJednostke.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Model\EntityMethods.cs" />
+    <Compile Include="Model\SkladnikPrzepisu.cs" />
+    <Compile Include="View\Informacje.xaml.cs">
+      <DependentUpon>Informacje.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Jednostki.cs">
+      <DependentUpon>ModelKsiazka.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Kategorie_Przepisy.cs">
+      <DependentUpon>ModelKsiazka.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Kategorie_Skladniki.cs">
+      <DependentUpon>ModelKsiazka.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\ModelKsiazka.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelKsiazka.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\ElementGrid.cs" />
+    <Compile Include="Model\Przepisy.cs">
+      <DependentUpon>ModelKsiazka.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Przepisy_Skladniki.cs">
+      <DependentUpon>ModelKsiazka.tt</DependentUpon>
+    </Compile>
+    <Compile Include="RelayCommand.cs" />
+    <Compile Include="Model\Skladniki.cs">
+      <DependentUpon>ModelKsiazka.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\sysdiagrams.cs">
+      <DependentUpon>ModelKsiazka.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModel\MainWindowViewModel.cs" />
+    <Compile Include="View\ZarzadzanieJednostkami.xaml.cs">
+      <DependentUpon>ZarzadzanieJednostkami.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ZarzadzanieKategoriami.xaml.cs">
+      <DependentUpon>ZarzadzanieKategoriami.xaml</DependentUpon>
+    </Compile>
+    <Page Include="View\DodajKategorie.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\EdytujSkladnikPrzepisu.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\DodajPrzepis.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\DodajSkladnik.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\DodajJednostke.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Informacje.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="View\MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="View\ZarzadzanieJednostkami.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ZarzadzanieKategoriami.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Model\ModelKsiazka.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelKsiazka.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\ModelKsiazka.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelKsiazka.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EntityDeploy Include="Model\ModelKsiazka.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>ModelKsiazka.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="Model\ModelKsiazka.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ModelKsiazka.edmx</DependentUpon>
+      <LastGenOutput>ModelKsiazka.Context.cs</LastGenOutput>
+    </None>
+    <None Include="Model\ModelKsiazka.edmx.diagram">
+      <DependentUpon>ModelKsiazka.edmx</DependentUpon>
+    </None>
+    <None Include="Model\ModelKsiazka.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ModelKsiazka.edmx</DependentUpon>
+      <LastGenOutput>ModelKsiazka.cs</LastGenOutput>
+    </None>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <AppDesigner Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\wsiiz_logo.jpg" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

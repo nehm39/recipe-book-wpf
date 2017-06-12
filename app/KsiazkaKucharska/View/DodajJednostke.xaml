@@ -1,0 +1,11 @@
+﻿<Window x:Class="KsiazkaKucharska.DodajJednostke"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="{Binding windowTitle}" Height="146" Width="250" ResizeMode="NoResize" WindowStartupLocation="CenterOwner">
+    <Grid Margin="0,0,4,5">
+        <Label Content="Nazwa:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="txbNazwa" Text="{Binding nazwa, UpdateSourceTrigger=PropertyChanged}"  HorizontalAlignment="Left" Height="23" Margin="10,36,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="212"/>
+        <Button x:Name="btnDodaj" Command="{Binding dodaj}" Content="{Binding btnDodaj}" HorizontalAlignment="Left" Margin="10,73,0,0" VerticalAlignment="Top" Width="212"/>
+
+    </Grid>
+</Window>

@@ -1,0 +1,13 @@
+﻿<Window x:Class="KsiazkaKucharska.ZarzadzanieJednostkami"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Zarządzanie jednostkami" Height="197" Width="309" WindowStartupLocation="CenterOwner" Closing="Window_Closing_1" ResizeMode="NoResize">
+    <Grid>
+        <Label Content="Wybierz jednostkę:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+        <ComboBox ItemsSource="{Binding jednostki}" SelectedItem="{Binding jednostkiSelection, Mode=TwoWay}" x:Name="cbListaJednostek" HorizontalAlignment="Left" Margin="10,36,0,0" VerticalAlignment="Top" Width="272"/>
+        <Button x:Name="btnDodaj" Content="Dodaj nową jednostkę" HorizontalAlignment="Left" Margin="10,73,0,0" VerticalAlignment="Top" Width="272" Click="btnDodaj_Click"/>
+        <Button x:Name="btnEdytuj" Content="Edytuj zaznaczoną jednostkę" HorizontalAlignment="Left" Margin="10,100,0,0" VerticalAlignment="Top" Width="272" Click="btnEdytuj_Click"/>
+        <Button x:Name="btnUsun" Command="{Binding usunJednostke}" Content="Usuń zaznaczoną jednostkę" HorizontalAlignment="Left" Margin="10,127,0,0" VerticalAlignment="Top" Width="272"/>
+
+    </Grid>
+</Window>
